@@ -4,9 +4,7 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -15,7 +13,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.activity.ComponentActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -23,7 +20,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.senai.limonada.ui.theme.LimonadaTheme
 
@@ -35,13 +31,13 @@ class MainActivity : ComponentActivity() {
         setContent {
             LimonadaTheme {
 
-                    LimonadaAPP(
+                LimonadaAPP()
 
-                    )
+            }
                 }
             }
         }
-    }
+
 
 
 @Composable
@@ -64,10 +60,10 @@ fun LimonadaGelada (modifier: Modifier = Modifier) {
         else -> R.drawable.lemon_restart
     }
     val stringResource = when (etapaAtual) {
-        1 -> R.drawable.lemon_drink
-        2 -> R.drawable.lemon_tree
-        3 -> R.drawable.lemon_squeeze
-        else -> R.drawable.lemon_restart
+        1 -> "Clique na árvore para selecionar o limão."
+        2 -> "Clique no limão para espremer."
+        3 -> "Clique no copo para beber a limonada."
+        else -> "Clique no copo vazio para recomeçar."
     }
 
 
@@ -79,7 +75,7 @@ fun LimonadaGelada (modifier: Modifier = Modifier) {
         Image(
             painter = painterResource(imageResource),
             contentDescription = "Imagem da etapa  $etapaAtual",
-            modifier = modifier
+            modifier = Modifier
                 .clickable {
                     etapaAtual = if (etapaAtual < 4) etapaAtual + 1 else 1
                 }
